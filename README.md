@@ -1,8 +1,8 @@
-##**Twitter Data Scraping**
+##Twitter Data Scraping
 
 A web app built on streamlit using python and snscrape library to scrap data from twitter for the given keyword /hashtag
 
-##**Snscrape**
+##Snscrape
 
 Here snscrape is used to scrape tweets from Twitters API without any restrictions or request limits. Moreover, we dont even need a Twitter developer account to scrape tweets when you use snscrape.
 
