@@ -1,24 +1,24 @@
-**Twitter Data Scraping**
+##**Twitter Data Scraping**
 
 A web app built on streamlit using python and snscrape library to scrap data from twitter for the given keyword /hashtag
 
-**Snscrape**
+##**Snscrape**
 
 Here snscrape is used to scrape tweets from Twitters API without any restrictions or request limits. Moreover, we dont even need a Twitter developer account to scrape tweets when you use snscrape.
 
-**MongoDB**
+##**MongoDB**
 
 With MongoDB here we can upload the scraped data and as we know MongoDB is much more than a database. It’s a complete developer data platform. And with MongoDB Atlas, the cloud offering by MongoDB, Hepls us to establish connection and store data.
 
-**Streamlit**
+##**Streamlit**
 
 As we all know Streamlit turns data scripts into shareable web apps in minutes. All in pure Python. No front‑end experience required. We use it with search box, sliders, buttons, download buttons etc.,
 
-**Download Files**
+##**Download Files**
 
 We also convert the DataFrames to csv and json files as it will be Downloadable
 
-**Workflow**
+##**Workflow**
 
 • By using the “snscrape” Library, Scrape the twitter data from Twitter Reference 
 • Create a dataframe with date, id, url, tweet content, user,reply count, retweet count, language, source, like count. 
@@ -27,9 +27,9 @@ We also convert the DataFrames to csv and json files as it will be Downloadable
 
 Create a GUI using streamlit that should contain the feature to enter the keyword or Hashtag to be searched, select the date range and limit the tweet count need to be scraped. After scraping, the data can be displayed in the page or upload the data into Database or download the data into csv and json format.
 
-**To Execute the Code:**
+##**To Execute the Code:**
 
-Pre-requsites: Your system should be ready with the following modules installed for the code to run 
+#Pre-requsites: Your system should be ready with the following modules installed for the code to run 
 
 •	Snscrape: import snscrape.modules.twitter as sntwitter
 •	Pandas: import pandas as pd
@@ -68,7 +68,7 @@ Download CSV file:
 Download JSon file:
 ![image](https://user-images.githubusercontent.com/35806558/230667678-15537015-6cbb-44a9-a9cf-0f98ed952019.png)
 
-## I opened in note pad so the data wont be identated, if you have any application that can view json files, you should be able to see the data clearly
+I opened in note pad so the data wont be identated, if you have any application that can view json files, you should be able to see the data clearly
 
 Data uploaded to local MongoDB:
 ![image](https://user-images.githubusercontent.com/35806558/230668128-f1f148ff-2701-41ec-ba9d-d9f643ee62ac.png)
