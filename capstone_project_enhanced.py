@@ -21,7 +21,10 @@ tweets_list = []
 
 
 #the above variable fed to TwitterSearchScraper and twitterHashtagScraper
-if word:
+if not word:
+   #st.warning(ref,' cant be empty', icon="*")
+   st.error("invalid input")
+else:
     try:
         if ref=='Keyword':
             for i,tweet in enumerate(sntwitter.TwitterSearchScraper(f'{word} since:{start_date} until:{end_date}').get_items()):
@@ -37,11 +40,9 @@ if word:
                 
         tweets_df = pd.DataFrame(tweets_list,columns=["ID", "Date", "Content", "Language", "Username", "ReplyCount", "RetweetCount","LikeCount", "Source", "Url"])
     except Exception as e:
-        st.error(f"Too many requests, TwitterRateLimit exceeded, please try again after few hours")
+        st.error("Too many requests, TwitterRateLimit exceeded, please try again after few hours")
         st.stop()
 
-else:
-    st.warning(ref,' cant be empty', icon="⚠️")
 
 #SIDEBAR
 with st.sidebar:   
@@ -69,26 +70,27 @@ if not tweets_df.empty:
     # DOWNLOAD AS JSON
     json_string = tweets_df.to_json(orient= "records")
     st.download_button(label= "Download data as JSON", data = json_string, file_name= word+".json",mime= "application/json")
-
-
-#upload data to MONGODB
-if st.button('Upload Tweets to MONGODB'):
-        coll=word
-        coll=coll.replace(' ','_')+'_Tweets'
-        mycoll=mydb[coll]
-        dict=tweets_df.to_dict("records")
-        if dict:
-            mycoll.insert_many(dict)
-            ts = time.time()
-            mycoll.update_many({}, {"$set": {"Keyword_or_Hashtag": word+str(ts)}}, upsert= False, array_filters= None)
-            st.success('Successfully uploaded to database', icon="✅")
-        else:
-            st.warning('Cant upload because there are no tweets', icon="⚠️")
+    
+    
+    #upload data to MONGODB
+    if st.button('Upload Tweets to MONGODB'):
+            coll=word
+            coll=coll.replace(' ','_')+'_Tweets'
+            mycoll=mydb[coll]
+            dict=tweets_df.to_dict("records")
+            if dict:
+                mycoll.insert_many(dict)
+                ts = time.time()
+                mycoll.update_many({}, {"$set": {"Keyword_or_Hashtag": word+str(ts)}}, upsert= False, array_filters= None)
+                st.success('Successfully uploaded to database', icon="✅")
+            else:
+                st.error("invalid input")
 
 # shows tweets
 if st.button('shows Tweets'):
        st.write(tweets_df)
-
+       
+       
 
 #display the documents in selected collection
 if not dfm.empty:
